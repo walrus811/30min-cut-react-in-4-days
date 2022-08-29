@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO</title>
+</head>
+<body>
+    <div id="root">아무것도 없습니다.</div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        function Todo1(){
+            return React.createElement(
+                "div",
+                {},
+                [
+                    React.createElement("input", {type: "checkbox", name : "냉동피자 사기", checked : true, disabled : true }),
+                    React.createElement("label", {htmlFor: "냉동피자 사기", }, "냉동피자 사기"),
+                ]
+            );
+        }
+        function Todo2(props){
+            return React.createElement(
+                "div",
+                {},
+                [
+                    React.createElement("input", {type: "checkbox", name :`${props.todo}`, checked : props.checked, disabled : true }),
+                    React.createElement("label", {htmlFor: `${props.todo}`, }, props.todo),
+                ]
+            );
+        }
+
+        function App(){
+            return React.createElement(
+                "div", 
+                {}, 
+                [
+                    React.createElement("h1", {}, "무엇을 할까?"),
+                    React.createElement(Todo2, {todo : "냉동피자 사기"}, ), 
+                    React.createElement(Todo2, {todo : "방청소 하기", checked : true}), 
+                    React.createElement(Todo2, {todo : "세차 하기"}), 
+                    React.createElement(Todo2, {todo : "잠 자기"}), 
+                    React.createElement(Todo1, {}), 
+                    React.createElement(Todo1, {}), 
+                    React.createElement(Todo1, {}), 
+                    React.createElement(Todo1, {}), 
+                    React.createElement("p", {}, "냉동피자 사기"), 
+                    React.createElement("p", {}, "방청소 하기"), 
+                    React.createElement("p", {}, "세차 하기"), 
+                    React.createElement("p", {}, "잠 자기"), 
+                ]
+            );
+        }
+        const root=document.getElementById("root");
+        const reactDOMRoot=ReactDOM.createRoot(root);
+        reactDOMRoot.render(App());
+    </script>
+</body>
+</html>
