@@ -1,61 +1,97 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TO DO</title>
-</head>
-<body>
-    <div id="root">아무것도 없습니다.</div>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="plainRoot">아무것도 없습니다.</div>
+    <div id="root1">아무것도 없습니다.</div>
+    <div id="root2">아무것도 없습니다.</div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
     <script>
-        function Todo1(){
-            return React.createElement(
-                "div",
-                {},
-                [
-                    React.createElement("input", {type: "checkbox", name : "냉동피자 사기", checked : true, disabled : true }),
-                    React.createElement("label", {htmlFor: "냉동피자 사기", }, "냉동피자 사기"),
-                ]
-            );
-        }
-        function Todo2(props){
-            return React.createElement(
-                "div",
-                {},
-                [
-                    React.createElement("input", {type: "checkbox", name :`${props.todo}`, checked : props.checked, disabled : true }),
-                    React.createElement("label", {htmlFor: `${props.todo}`, }, props.todo),
-                ]
-            );
-        }
+      function Todo1() {
+        return React.createElement("div", {}, [
+          React.createElement("input", {
+            type: "checkbox",
+            name: "냉동피자 사기",
+            checked: true,
+            disabled: true,
+          }),
+          React.createElement(
+            "label",
+            { htmlFor: "냉동피자 사기" },
+            "냉동피자 사기"
+          ),
+        ]);
+      }
 
-        function App(){
-            return React.createElement(
-                "div", 
-                {}, 
-                [
-                    React.createElement("h1", {}, "무엇을 할까?"),
-                    React.createElement(Todo2, {todo : "냉동피자 사기"}, ), 
-                    React.createElement(Todo2, {todo : "방청소 하기", checked : true}), 
-                    React.createElement(Todo2, {todo : "세차 하기"}), 
-                    React.createElement(Todo2, {todo : "잠 자기"}), 
-                    React.createElement(Todo1, {}), 
-                    React.createElement(Todo1, {}), 
-                    React.createElement(Todo1, {}), 
-                    React.createElement(Todo1, {}), 
-                    React.createElement("p", {}, "냉동피자 사기"), 
-                    React.createElement("p", {}, "방청소 하기"), 
-                    React.createElement("p", {}, "세차 하기"), 
-                    React.createElement("p", {}, "잠 자기"), 
-                ]
-            );
-        }
-        const root=document.getElementById("root");
-        const reactDOMRoot=ReactDOM.createRoot(root);
-        reactDOMRoot.render(App());
+      function Todo2(props) {
+        return React.createElement("div", {}, [
+          React.createElement("input", {
+            type: "checkbox",
+            name: `${props.todo}`,
+            checked: props.checked,
+            disabled: true,
+          }),
+          React.createElement(
+            "label",
+            { htmlFor: `${props.todo}` },
+            props.todo
+          ),
+        ]);
+      }
+
+      function PlainApp() {
+        return React.createElement("div", {}, [
+          React.createElement("h1", {}, "무엇을 할까(Plain)?"),
+          React.createElement("p", {}, "냉동피자 사기"),
+          React.createElement("p", {}, "방청소 하기"),
+          React.createElement("p", {}, "세차 하기"),
+          React.createElement("p", {}, "잠 자기"),
+        ]);
+      }
+
+      function App1() {
+        return React.createElement("div", {}, [
+          React.createElement("h1", {}, "무엇을 할까(App1)?"),
+          React.createElement(Todo1, {}),
+          React.createElement(Todo1, {}),
+          React.createElement(Todo1, {}),
+          React.createElement(Todo1, {}),
+        ]);
+      }
+
+      function App2() {
+        return React.createElement("div", {}, [
+          React.createElement("h1", {}, "무엇을 할까(App2)?"),
+          React.createElement(Todo2, { todo: "냉동피자 사기" }),
+          React.createElement(Todo2, { todo: "방청소 하기", checked: true }),
+          React.createElement(Todo2, { todo: "세차 하기" }),
+          React.createElement(Todo2, { todo: "잠 자기" }),
+        ]);
+      }
+
+      const plainRoot = document.getElementById("plainRoot");
+      const reactDOMPlainRoot = ReactDOM.createRoot(plainRoot);
+      reactDOMPlainRoot.render(PlainApp());
+
+      const root1 = document.getElementById("root1");
+      const reactDOMRoot1 = ReactDOM.createRoot(root1);
+      reactDOMRoot1.render(App1());
+
+      const root2 = document.getElementById("root2");
+      const reactDOMRoot2 = ReactDOM.createRoot(root2);
+      reactDOMRoot2.render(App2());
     </script>
-</body>
+  </body>
 </html>
